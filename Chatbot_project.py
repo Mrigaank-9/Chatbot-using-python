@@ -3,7 +3,6 @@ from tkinter import scrolledtext, messagebox
 from datetime import datetime
 import requests
 
-
 class ChatBot:
     def __init__(self, master):
         self.master = master
@@ -101,12 +100,13 @@ class ChatBot:
         import random
         fact = random.choice(facts)
         self.display_message("Bot: Did you know? " + fact)
-
+        
     def get_weather(self, message):
         # Extract the location from the user's message
         location = message.split('weather')[1].strip()
         if location:
-            API_KEY = 'fbc088961b245e9c0dd3761e65d7968a'
+            # Replace 'YOUR_API_KEY' with your own OpenWeatherMap API key
+            API_KEY = '6f99a92120d6daafdc06de831c3454d6'
             url = f'http://api.openweathermap.org/data/2.5/weather?q={location}&appid={API_KEY}&units=metric'
             response = requests.get(url)
             data = response.json()
@@ -119,13 +119,10 @@ class ChatBot:
         else:
             self.display_message("Bot: Please specify the location for which you want the weather information.")
 
-
 def main():
     root = tk.Tk()
     chatbot = ChatBot(root)
     root.mainloop()
 
-
 if __name__ == "__main__":
     main()
-
